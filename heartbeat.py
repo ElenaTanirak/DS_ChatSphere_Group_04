@@ -2,6 +2,7 @@
 import socket
 import leader_election
 import hosts
+import sys
 from time import sleep
 
 
@@ -33,17 +34,17 @@ def starting_heartbeats():
 
             except:
                 # Handle the failure to connect to the neighbour
-                print(f'Heartbeat: Failed to connect to Neighbour ({hosts.neighbour}).')
+                print(f'Heartbeat: Failed to connect to Neighbour ({hosts.neighbour}).', file=sys.stderr)
                 hosts.server_list.remove(hosts.neighbour)
 
                 if hosts.leader == hosts.neighbour:
-                    print(f'Heartbeat: >>>>> The Server Leader ({hosts.neighbour}) crashed.')
+                    print(f'Heartbeat: >>>>> The Server Leader ({hosts.neighbour}) crashed.', file=sys.stderr)
                     hosts.is_leader_server_crashed = True
                     hosts.leader = hosts.my_ip
                     hosts.is_network_changed = True
 
                 else:
-                    print(f'Heartbeat: Server Reproduction ({hosts.neighbour}) crashed.')
+                    print(f'Heartbeat: Server Reproduction ({hosts.neighbour}) crashed.', file=sys.stderr)
                     hosts.has_server_replication_crashed = 'True'
 
             finally:

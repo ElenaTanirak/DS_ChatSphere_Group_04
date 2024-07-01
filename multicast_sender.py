@@ -36,7 +36,7 @@ def sending_join_request():
         return True
 
     except socket.timeout:
-        print(f'[Multicast Sender - {hosts.my_ip}]: Unfortunately, the Multicast Listener was not found. The Server is probably offline.')
+        print(f'[Multicast Sender - {hosts.my_ip}]: Unfortunately, the Multicast Listener was not found. The Server is probably offline.', file=sys.stderr)
         return False
     
 
@@ -63,6 +63,6 @@ def sending_request_to_multicast():
         return True
 
     except socket.timeout:
-        print(f'[Multicast Sender - {hosts.my_ip}]: Unfortunately, no Multicast Listener was found.')
+        print(f'[Multicast Sender - {hosts.my_ip}]: Unfortunately, no Multicast Listener was found.', file=sys.stderr)
         return False
 

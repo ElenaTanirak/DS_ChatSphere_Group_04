@@ -94,13 +94,10 @@ def socket_binding():
                 fifoQueue.put(f'\n===> Client {username} from {address} has joined the Chat.\n')
                 print(f'\n===> Client {username} from {address} has joined the Chat.')
                 hosts.client_list.append(client)
-                thread(handle_clients, (client, address, username))
-
-            # elif data_received.startswith(b'HEARTBEAT'):
-            #     print(f'Received heartbeat from {address}.')  
+                thread(handle_clients, (client, address, username))  
 
         except Exception as e:
-            print(f'An Error occurred: {e}')
+            print(f'An Error occurred: {e}', file=sys.stderr)
             break
 
 
@@ -151,7 +148,7 @@ if __name__ == '__main__':
 
         except KeyboardInterrupt:
             server_running = False
-            print(f'\nServer on IP {hosts.my_ip} with Port {hosts.server_port} is shutting down.')
+            print(f'\nServer on IP {hosts.my_ip} with Port {hosts.server_port} is shutting down.', file=sys.stderr)
             sock.close()
             break
 

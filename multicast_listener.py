@@ -55,4 +55,4 @@ def multicast_starts_listening():
                 hosts.is_network_changed = True
 
         except KeyboardInterrupt:
-            print(f'[Multicast Listener - {hosts.my_ip}]: UDP Socket is now closed.')
+            print(f'[Multicast Listener - {hosts.my_ip}]: UDP Socket is now closed.', file=sys.stderr)
