@@ -45,7 +45,7 @@ def handle_clients(client, address, username):
             print(f'\n==> New Message from {username}: {message}')
 
         except Exception as e:
-            print(f'An Error occurred: {e}')
+            print(f'----> {username} has left the Chat.')
             break
 
     if client in hosts.client_list:
